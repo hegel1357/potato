@@ -1,0 +1,893 @@
+Epoch 0/49
+----------
+train Loss: 1.7945 Acc: 0.2922
+val Loss: 2.1492 Acc: 0.1913
+
+Epoch 1/49
+----------
+train Loss: 1.6132 Acc: 0.3473
+val Loss: 1.7211 Acc: 0.2924
+
+Epoch 2/49
+----------
+train Loss: 1.5394 Acc: 0.3903
+val Loss: 1.5936 Acc: 0.3646
+
+Epoch 3/49
+----------
+train Loss: 1.4623 Acc: 0.4148
+val Loss: 1.6108 Acc: 0.3971
+
+Epoch 4/49
+----------
+train Loss: 1.3927 Acc: 0.4461
+val Loss: 1.5655 Acc: 0.3718
+
+Epoch 5/49
+----------
+train Loss: 1.3175 Acc: 0.4891
+val Loss: 1.4721 Acc: 0.4260
+
+Epoch 6/49
+----------
+train Loss: 1.2266 Acc: 0.5265
+val Loss: 1.6417 Acc: 0.4477
+
+Epoch 7/49
+----------
+train Loss: 1.1257 Acc: 0.5764
+val Loss: 1.3915 Acc: 0.4657
+
+Epoch 8/49
+----------
+train Loss: 1.0896 Acc: 0.5840
+val Loss: 1.3975 Acc: 0.4585
+
+Epoch 9/49
+----------
+train Loss: 1.0632 Acc: 0.6013
+val Loss: 1.3974 Acc: 0.4621
+
+Epoch 10/49
+----------
+train Loss: 1.0578 Acc: 0.6093
+val Loss: 1.4092 Acc: 0.4585
+
+Epoch 11/49
+----------
+train Loss: 1.0275 Acc: 0.6174
+val Loss: 1.4340 Acc: 0.4332
+
+Epoch 12/49
+----------
+train Loss: 0.9964 Acc: 0.6310
+val Loss: 1.4160 Acc: 0.4513
+
+Epoch 13/49
+----------
+train Loss: 0.9940 Acc: 0.6355
+val Loss: 1.4443 Acc: 0.4549
+
+Epoch 14/49
+----------
+train Loss: 0.9706 Acc: 0.6539
+val Loss: 1.4342 Acc: 0.4549
+
+Epoch 15/49
+----------
+train Loss: 0.9990 Acc: 0.6355
+val Loss: 1.4349 Acc: 0.4549
+
+Epoch 16/49
+----------
+train Loss: 0.9896 Acc: 0.6427
+val Loss: 1.4346 Acc: 0.4621
+
+Epoch 17/49
+----------
+train Loss: 0.9664 Acc: 0.6387
+val Loss: 1.4293 Acc: 0.4440
+
+Epoch 18/49
+----------
+train Loss: 0.9622 Acc: 0.6447
+val Loss: 1.4324 Acc: 0.4621
+
+Epoch 19/49
+----------
+train Loss: 0.9814 Acc: 0.6326
+val Loss: 1.4281 Acc: 0.4368
+
+Epoch 20/49
+----------
+train Loss: 0.9885 Acc: 0.6383
+val Loss: 1.4152 Acc: 0.4477
+
+Epoch 21/49
+----------
+train Loss: 0.9635 Acc: 0.6483
+val Loss: 1.4515 Acc: 0.4368
+
+Epoch 22/49
+----------
+train Loss: 0.9638 Acc: 0.6435
+val Loss: 1.4282 Acc: 0.4549
+
+Epoch 23/49
+----------
+train Loss: 0.9608 Acc: 0.6479
+val Loss: 1.4490 Acc: 0.4657
+
+Epoch 24/49
+----------
+train Loss: 0.9693 Acc: 0.6375
+val Loss: 1.4324 Acc: 0.4585
+
+Epoch 25/49
+----------
+train Loss: 0.9503 Acc: 0.6539
+val Loss: 1.4364 Acc: 0.4549
+
+Epoch 26/49
+----------
+train Loss: 0.9738 Acc: 0.6467
+val Loss: 1.4273 Acc: 0.4477
+
+Epoch 27/49
+----------
+train Loss: 0.9549 Acc: 0.6431
+val Loss: 1.4219 Acc: 0.4477
+
+Epoch 28/49
+----------
+train Loss: 0.9691 Acc: 0.6439
+val Loss: 1.4417 Acc: 0.4729
+
+Epoch 29/49
+----------
+train Loss: 0.9531 Acc: 0.6459
+val Loss: 1.4345 Acc: 0.4477
+
+Epoch 30/49
+----------
+train Loss: 0.9598 Acc: 0.6355
+val Loss: 1.4280 Acc: 0.4477
+
+Epoch 31/49
+----------
+train Loss: 0.9730 Acc: 0.6423
+val Loss: 1.4506 Acc: 0.4657
+
+Epoch 32/49
+----------
+train Loss: 0.9520 Acc: 0.6535
+val Loss: 1.4466 Acc: 0.4477
+
+Epoch 33/49
+----------
+train Loss: 0.9652 Acc: 0.6403
+val Loss: 1.4082 Acc: 0.4585
+
+Epoch 34/49
+----------
+train Loss: 0.9691 Acc: 0.6463
+val Loss: 1.4279 Acc: 0.4585
+
+Epoch 35/49
+----------
+train Loss: 0.9479 Acc: 0.6632
+val Loss: 1.4272 Acc: 0.4404
+
+Epoch 36/49
+----------
+train Loss: 0.9608 Acc: 0.6568
+val Loss: 1.4417 Acc: 0.4549
+
+Epoch 37/49
+----------
+train Loss: 0.9766 Acc: 0.6427
+val Loss: 1.4220 Acc: 0.4440
+
+Epoch 38/49
+----------
+train Loss: 0.9497 Acc: 0.6551
+val Loss: 1.4569 Acc: 0.4477
+
+Epoch 39/49
+----------
+train Loss: 0.9616 Acc: 0.6403
+val Loss: 1.4304 Acc: 0.4368
+
+Epoch 40/49
+----------
+train Loss: 0.9754 Acc: 0.6371
+val Loss: 1.4384 Acc: 0.4513
+
+Epoch 41/49
+----------
+train Loss: 0.9617 Acc: 0.6543
+val Loss: 1.4377 Acc: 0.4549
+
+Epoch 42/49
+----------
+train Loss: 0.9571 Acc: 0.6455
+val Loss: 1.4327 Acc: 0.4513
+
+Epoch 43/49
+----------
+train Loss: 0.9545 Acc: 0.6483
+val Loss: 1.4362 Acc: 0.4332
+
+Epoch 44/49
+----------
+train Loss: 0.9643 Acc: 0.6411
+val Loss: 1.4608 Acc: 0.4296
+
+Epoch 45/49
+----------
+train Loss: 0.9617 Acc: 0.6559
+val Loss: 1.4294 Acc: 0.4368
+
+Epoch 46/49
+----------
+train Loss: 0.9626 Acc: 0.6471
+val Loss: 1.4331 Acc: 0.4585
+
+Epoch 47/49
+----------
+train Loss: 0.9629 Acc: 0.6519
+val Loss: 1.4382 Acc: 0.4513
+
+Epoch 48/49
+----------
+train Loss: 0.9738 Acc: 0.6491
+val Loss: 1.4355 Acc: 0.4440
+
+Epoch 49/49
+----------
+train Loss: 0.9697 Acc: 0.6342
+val Loss: 1.4304 Acc: 0.4404
+
+Training complete in 37m 16s
+Best val Acc: 0.4729
+Image: Potato Leaf Disease Dataset\test\Bacteria\1692333631989.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230815_111239.jpg
+Predicted: Fungi, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230815_111704.jpg
+Predicted: Fungi, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230815_113829.jpg
+Predicted: Virus, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230815_113856.jpg
+Predicted: Fungi, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230815_122422.jpg
+Predicted: Fungi, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_091330.jpg
+Predicted: Fungi, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_134143.jpg
+Predicted: Virus, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_134527.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_134537.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_134720.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_134736.jpg
+Predicted: Pest, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_134825.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_135046.jpg
+Predicted: Fungi, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_135444.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_135513.jpg
+Predicted: Fungi, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_135543.jpg
+Predicted: Phytopthora, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_135602.jpg
+Predicted: Fungi, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_135627.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_140618.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_140628.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_140947.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_141042.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_142015.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_142201.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_142259.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_142329.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_142738.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_142749.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_142810.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\20230816_143409.jpg
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_0359.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_0364.JPG
+Predicted: Phytopthora, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_0913.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_0914.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1009.JPG
+Predicted: Virus, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1039.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1043.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1070.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1083.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1117.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1118.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1135.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1152.JPG
+Predicted: Fungi, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1153.JPG
+Predicted: Fungi, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1154.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1157.JPG
+Predicted: Virus, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1164.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1169.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1178.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1182.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1187.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1202.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1210.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1215.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1217.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Bacteria\IMG_1240.JPG
+Predicted: Bacteria, Actual: Bacteria
+Image: Potato Leaf Disease Dataset\test\Fungi\1692334247280.jpg
+Predicted: Bacteria, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\1692334247364.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\1692334247523.jpg
+Predicted: Bacteria, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\1692334247616.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\1692334247713.jpg
+Predicted: Virus, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\1692334247801.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\1692335403421.jpg
+Predicted: Virus, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\1692335403790.jpg
+Predicted: Virus, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\1692338650403.jpg
+Predicted: Pest, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\20230712_120701.jpg
+Predicted: Pest, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\20230712_122430.jpg
+Predicted: Pest, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\20230712_123313.jpg
+Predicted: Pest, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\20230802_105722.jpg
+Predicted: Phytopthora, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\20230802_110038.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\20230802_111537860.jpg
+Predicted: Pest, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\20230802_111824.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\20230802_111847.jpg
+Predicted: Bacteria, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\20230815_123000.jpg
+Predicted: Virus, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\20230815_152017.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\20230816_122025.jpg
+Predicted: Pest, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\20230816_122418.jpg
+Predicted: Bacteria, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\20230816_140642.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_0143.JPG
+Predicted: Bacteria, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_0149.JPG
+Predicted: Bacteria, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_0269.JPG
+Predicted: Bacteria, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_0277.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_0289.JPG
+Predicted: Virus, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_0290.JPG
+Predicted: Pest, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_0662.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_0705.JPG
+Predicted: Phytopthora, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_0708.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_0744.JPG
+Predicted: Virus, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_0778.JPG
+Predicted: Bacteria, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230815_112512~2.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230815_113928~2.jpg
+Predicted: Bacteria, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230815_121024~2.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230815_122511~2.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230815_150341.jpg
+Predicted: Virus, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230815_153607.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230816_090727 (1).jpg
+Predicted: Pest, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230816_114422.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230816_121111.jpg
+Predicted: Pest, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230816_121536~2.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230816_121600.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230816_122017.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230816_122345~2.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230816_122600.jpg
+Predicted: Pest, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230816_122740.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_20230816_123538~2.jpg
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_4666.JPG
+Predicted: Pest, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_4668.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_4670.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_4677.JPG
+Predicted: Phytopthora, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_4692.JPG
+Predicted: Pest, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_4730.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_4758.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_4777.JPG
+Predicted: Phytopthora, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_4783.JPG
+Predicted: Pest, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_4799.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_4800.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_4810.JPG
+Predicted: Bacteria, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_8078.JPG
+Predicted: Bacteria, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_8109.JPG
+Predicted: Bacteria, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_8147.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_8352.JPG
+Predicted: Bacteria, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_9370.JPG
+Predicted: Phytopthora, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_9375.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_9378.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_9379.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_9409.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_9432.JPG
+Predicted: Phytopthora, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_9437.JPG
+Predicted: Phytopthora, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_9446.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_9468.JPG
+Predicted: Fungi, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Fungi\IMG_9470.JPG
+Predicted: Bacteria, Actual: Fungi
+Image: Potato Leaf Disease Dataset\test\Healthy\1692336758935.jpg
+Predicted: Fungi, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230712_121645 (1).jpg
+Predicted: Fungi, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230712_121740.jpg
+Predicted: Phytopthora, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230712_123812.jpg
+Predicted: Virus, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230712_123902.jpg
+Predicted: Fungi, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230712_130618.jpg
+Predicted: Pest, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230712_131215.jpg
+Predicted: Virus, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230712_131524.jpg
+Predicted: Fungi, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230802_115921170.jpg
+Predicted: Fungi, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230802_115936805.jpg
+Predicted: Virus, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230802_124220.jpg
+Predicted: Virus, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230802_130151.jpg
+Predicted: Virus, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230815_111720.jpg
+Predicted: Virus, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230815_121201.jpg
+Predicted: Fungi, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230816_083748.jpg
+Predicted: Fungi, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230816_121602.jpg
+Predicted: Virus, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230922_154220.jpg
+Predicted: Pest, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\20230922_155409.jpg
+Predicted: Pest, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\IMG_0720.JPG
+Predicted: Virus, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\IMG_20230815_152320.jpg
+Predicted: Fungi, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Healthy\IMG_4773.JPG
+Predicted: Fungi, Actual: Healthy
+Image: Potato Leaf Disease Dataset\test\Nematode\20230712_122808.jpg
+Predicted: Nematode, Actual: Nematode
+Image: Potato Leaf Disease Dataset\test\Nematode\20230712_155420.jpg
+Predicted: Fungi, Actual: Nematode
+Image: Potato Leaf Disease Dataset\test\Nematode\20230815_122915.jpg
+Predicted: Nematode, Actual: Nematode
+Image: Potato Leaf Disease Dataset\test\Nematode\20230815_151412.jpg
+Predicted: Nematode, Actual: Nematode
+Image: Potato Leaf Disease Dataset\test\Nematode\20230816_084203.jpg
+Predicted: Nematode, Actual: Nematode
+Image: Potato Leaf Disease Dataset\test\Nematode\IMG_8330.JPG
+Predicted: Bacteria, Actual: Nematode
+Image: Potato Leaf Disease Dataset\test\Nematode\IMG_8331.JPG
+Predicted: Nematode, Actual: Nematode
+Image: Potato Leaf Disease Dataset\test\Pest\1692332350400.jpg
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\1692332350409.jpg
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\1692333632291.jpg
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\1692333632301.jpg
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\1692333632391.jpg
+Predicted: Bacteria, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\1692334247052.jpg
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\1692334247071.jpg
+Predicted: Bacteria, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\1692334247101.jpg
+Predicted: Bacteria, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\1692334247132.jpg
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\1692338650582.jpg
+Predicted: Virus, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\1692338650651.jpg
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\1692338650721.jpg
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\1692339473834.jpg
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230712_115906.jpg
+Predicted: Pest, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230712_121915.jpg
+Predicted: Pest, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230712_121944.jpg
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230712_122034.jpg
+Predicted: Virus, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230712_122053.jpg
+Predicted: Virus, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230712_122101.jpg
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230712_122134.jpg
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230712_122203.jpg
+Predicted: Pest, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230712_122233.jpg
+Predicted: Pest, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230712_123334.jpg
+Predicted: Phytopthora, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230712_154041.jpg
+Predicted: Bacteria, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230712_154337.jpg
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230802_115332.jpg
+Predicted: Bacteria, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230802_115337.jpg
+Predicted: Pest, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230802_115340.jpg
+Predicted: Pest, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230802_115351.jpg
+Predicted: Pest, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230802_115353.jpg
+Predicted: Pest, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230802_120228868.jpg
+Predicted: Pest, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230802_120239780.jpg
+Predicted: Healthy, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230802_120246564.jpg
+Predicted: Healthy, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230802_120254590.jpg
+Predicted: Pest, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230802_120320622.jpg
+Predicted: Virus, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230802_123654369.jpg
+Predicted: Healthy, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230802_124823720.jpg
+Predicted: Pest, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\20230816_140322.jpg
+Predicted: Bacteria, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_0190.JPG
+Predicted: Healthy, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_0191.JPG
+Predicted: Pest, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_0192.JPG
+Predicted: Phytopthora, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_0197.JPG
+Predicted: Virus, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_0213 (1).JPG
+Predicted: Phytopthora, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_0214.JPG
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_0215.JPG
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_0216 (1).JPG
+Predicted: Phytopthora, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_0231.JPG
+Predicted: Bacteria, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_0232.JPG
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_0233.JPG
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_0235.JPG
+Predicted: Pest, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_8162.JPG
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_8166.JPG
+Predicted: Phytopthora, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_8170.JPG
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_8307.JPG
+Predicted: Pest, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_8316.JPG
+Predicted: Phytopthora, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_8321.JPG
+Predicted: Virus, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_8326.JPG
+Predicted: Bacteria, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_9492.JPG
+Predicted: Virus, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_9530.JPG
+Predicted: Phytopthora, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_9532.JPG
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_9533.JPG
+Predicted: Fungi, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Pest\IMG_9551.JPG
+Predicted: Bacteria, Actual: Pest
+Image: Potato Leaf Disease Dataset\test\Phytopthora\20230802_123436584.jpg
+Predicted: Pest, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\20230802_123451.jpg
+Predicted: Virus, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\20230802_123736.jpg
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\20230802_123755.jpg
+Predicted: Pest, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\20230802_124456.jpg
+Predicted: Bacteria, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\20230802_124750970.jpg
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\20230802_125410.jpg
+Predicted: Pest, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\20230802_125536.jpg
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_0314 - Copy.JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_0374.JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_0378.JPG
+Predicted: Pest, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_0379.JPG
+Predicted: Pest, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_0382.JPG
+Predicted: Fungi, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_0394.JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_0395.JPG
+Predicted: Virus, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_0400.JPG
+Predicted: Pest, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_20230816_122247.jpg
+Predicted: Bacteria, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_4815.JPG
+Predicted: Fungi, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_8290.JPG
+Predicted: Pest, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_8323.JPG
+Predicted: Nematode, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9366.JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9425.JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9440.JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9443 (1).JPG
+Predicted: Fungi, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9463.JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9511.JPG
+Predicted: Virus, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9512 (1).JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9512.JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9514 (1).JPG
+Predicted: Bacteria, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9524.JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9525.JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9535.JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9539.JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9560 (1).JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Phytopthora\IMG_9565.JPG
+Predicted: Phytopthora, Actual: Phytopthora
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0625.JPG
+Predicted: Virus, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0626.JPG
+Predicted: Virus, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0649.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0650.JPG
+Predicted: Virus, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0651.JPG
+Predicted: Virus, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0652.JPG
+Predicted: Virus, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0653.JPG
+Predicted: Fungi, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0654.JPG
+Predicted: Fungi, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0789.JPG
+Predicted: Pest, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0808.JPG
+Predicted: Virus, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0812.JPG
+Predicted: Pest, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0813.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0819.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0820.JPG
+Predicted: Pest, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0968.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0978.JPG
+Predicted: Fungi, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0981.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0982.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0983.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0984.JPG
+Predicted: Virus, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0986.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0995.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0996.JPG
+Predicted: Fungi, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0997.JPG
+Predicted: Pest, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_0999.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_1001.JPG
+Predicted: Fungi, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_1010.JPG
+Predicted: Fungi, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_1073.JPG
+Predicted: Fungi, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_1085.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_1098.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_1103.JPG
+Predicted: Pest, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_1104.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_1230.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_1254.JPG
+Predicted: Pest, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_1265.JPG
+Predicted: Bacteria, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_1266.JPG
+Predicted: Fungi, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_20230815_153050~2.jpg
+Predicted: Fungi, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_20230815_153212~2.jpg
+Predicted: Phytopthora, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_20230815_153724.jpg
+Predicted: Fungi, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_20230816_075730.jpg
+Predicted: Virus, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_8194.JPG
+Predicted: Fungi, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_8206.JPG
+Predicted: Phytopthora, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_8207.JPG
+Predicted: Fungi, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_8208.JPG
+Predicted: Virus, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_8209.JPG
+Predicted: Virus, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_8260.JPG
+Predicted: Phytopthora, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_8272.JPG
+Predicted: Fungi, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_8342.JPG
+Predicted: Fungi, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_9522.JPG
+Predicted: Phytopthora, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_9527.JPG
+Predicted: Virus, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_9528.JPG
+Predicted: Phytopthora, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_9529.JPG
+Predicted: Phytopthora, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_9541.JPG
+Predicted: Phytopthora, Actual: Virus
+Image: Potato Leaf Disease Dataset\test\Virus\IMG_9545.JPG
+Predicted: Fungi, Actual: Virus
+Test Acc: 0.3923
+Precision: 0.3557
+Recall: 0.3923
+F1 Score: 0.3663
+Confusion Matrix:
+[[40 10  0  0  1  2  4]
+ [14 34  0  0 13  7  7]
+ [ 0  9  0  0  3  1  8]
+ [ 1  1  0  5  0  0  0]
+ [ 9 21  4  0 14  7  7]
+ [ 3  3  0  1  7 18  3]
+ [15 15  0  0  6  7 11]]
+Class Bacteria - TP: 40, FP: 42, TN: 212, FN: 17
+Class Fungi - TP: 34, FP: 59, TN: 177, FN: 41
+Class Healthy - TP: 0, FP: 4, TN: 286, FN: 21
+Class Nematode - TP: 5, FP: 1, TN: 303, FN: 2
+Class Pest - TP: 14, FP: 30, TN: 219, FN: 48
+Class Phytopthora - TP: 18, FP: 24, TN: 252, FN: 17
+Class Virus - TP: 11, FP: 29, TN: 228, FN: 43

@@ -16,10 +16,11 @@ conf_matrix = np.array([
 # 定義類別標籤
 class_names = ['Bacteria', 'Fungi', 'Healthy', 'Nematode', 'Pest', 'Phytopthora', 'Virus']
 
-# 創建熱圖
+# 創建熱圖，調整字體大小
 plt.figure(figsize=(10, 8))
 sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', 
-            xticklabels=class_names, yticklabels=class_names)
+            xticklabels=class_names, yticklabels=class_names,
+            annot_kws={"size": 16})  # 調整數字大小
 
 plt.title('Confusion Matrix')
 plt.xlabel('Predicted')
