@@ -123,9 +123,9 @@ def k_fold_cross_validation(k, model, dataset, batch_size, device, num_epochs, c
 
         model_copy = copy.deepcopy(model)
         criterion = nn.CrossEntropyLoss()
-        optimizer = optim.Adam(model_copy.parameters(), lr=0.0001)
+        optimizer = optim.AdamW(model_copy.parameters())
         scheduler = ReduceLROnPlateau(
-            optimizer, mode='min', factor=0.1, patience=150)  # 更新這裡
+            optimizer, mode='min', factor=0.5, patience=15)  # 更新這裡
 
         model_copy, best_acc, fold_result = train_model(
             model_copy, criterion, optimizer, scheduler, dataloaders, dataset_sizes, device, num_epochs)

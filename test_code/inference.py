@@ -1,150 +1,180 @@
 import torch
-import torch.nn as nn
-from torchvision import transforms, models
 import os
-import cv2
-from PIL import Image
-import time  # 引入 time 模組
+import time
+from torchvision import datasets, transforms, models
+from torch.utils.data import DataLoader
+import torch.nn as nn  
+from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
+from torchvision.models.regnet import RegNet_Y_400MF_Weights
 
-
-def load_model(model_path, num_classes):
-    model = models.regnet_y_400mf(pretrained=False)
-    num_ftrs = model.fc.in_features
-    model.fc = nn.Linear(num_ftrs, num_classes)
-    model.load_state_dict(torch.load(model_path))
+def test_model(model, dataloader, dataset_size, device, class_names):
     model.eval()
-    return model
+    running_corrects = 0
+    all_preds = []
+    all_labels = []
+    inference_times = []  # 用來存儲每張影像的推論時間
 
+    img_counter = 0
+    for inputs, labels in dataloader:
+        inputs = inputs.to(device)
+        labels = labels.to(device)
 
-def preprocess_image(image):
-    preprocess = transforms.Compose([
+        with torch.no_grad():
+            start_time = time.time()  # 開始計時
+            outputs = model(inputs)
+            _, preds = torch.max(outputs, 1)
+            end_time = time.time()  # 結束計時
+
+        running_corrects += torch.sum(preds == labels.data)
+        all_preds.extend(preds.cpu().numpy())
+        all_labels.extend(labels.cpu().numpy())
+
+        # 計算每張影像的推論時間
+        for i in range(inputs.size(0)):
+            inference_time = end_time - start_time
+            inference_times.append(inference_time)  # 記錄推論時間
+            print(f'Image: {dataloader.dataset.samples[img_counter][0]}')
+            print(f'Predicted: {class_names[preds[i]]}, Actual: {class_names[labels.data[i]]}, Inference Time: {inference_time:.4f} seconds')
+            img_counter += 1
+
+    test_acc = running_corrects.double() / dataset_size
+    precision = precision_score(all_labels, all_preds, average='weighted')
+    recall = recall_score(all_labels, all_preds, average='weighted')
+    f1 = f1_score(all_labels, all_preds, average='weighted')
+    cm = confusion_matrix(all_labels, all_preds)
+
+    print(f'Test Acc: {test_acc:.4f}')
+    print(f'Precision: {precision:.4f}')
+    print(f'Recall: {recall:.4f}')
+    print(f'F1 Score: {f1:.4f}')
+    print('Confusion Matrix:')
+    print(cm)
+
+    # 計算平均推論速度
+    avg_inference_time = sum(inference_times) / len(inference_times)
+    print(f'Average Inference Time per Image: {avg_inference_time:.4f} seconds')
+
+    for i, class_name in enumerate(class_names):
+        TP = cm[i, i]
+        FP = cm[:, i].sum() - TP
+        FN = cm[i, :].sum() - TP
+        TN = cm.sum() - (TP + FP + FN)
+        print(f'Class {class_name} - TP: {TP}, FP: {FP}, TN: {TN}, FN: {FN}')
+
+if __name__ == '__main__':
+    data_dir = 'Potato Leaf Disease Dataset'  # 修改為您的資料集路徑
+    batch_size = 1  # 批量大小
+
+    data_transforms = transforms.Compose([
         transforms.Resize((224, 224)),
         transforms.ToTensor(),
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ])
-    image = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-    image = preprocess(image).unsqueeze(0)
-    return image
 
+    test_dataset = datasets.ImageFolder(root=os.path.join(data_dir, 'test'), transform=data_transforms)
+    dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
 
-def predict(model, image, device, class_names, threshold=0.5):
-    image = image.to(device)
-    start_time = time.time()  # 記錄開始時間
-    with torch.no_grad():
-        outputs = model(image)
-        probs = torch.softmax(outputs, dim=1)
-        max_prob, preds = torch.max(probs, 1)
-    end_time = time.time()  # 記錄結束時間
+    dataset_size = len(test_dataset)
+    class_names = test_dataset.classes
 
-    inference_time = end_time - start_time  # 計算推論時間
-
-    if max_prob.item() < threshold:
-        return None, -1, max_prob.item(), inference_time
-
-    return class_names[preds.item()], preds.item(), max_prob.item(), inference_time
-
-
-def draw_prediction_on_image(image, true_label, prediction, confidence):
-    font = cv2.FONT_HERSHEY_SIMPLEX
-    font_scale = 2  # 增加字體大小
-    text = f"True: {true_label}, prediction: {prediction} "
-    cv2.putText(image, text, (10, 60), font,
-                font_scale, (0, 255, 0), 2, cv2.LINE_AA)
-    return image
-
-
-if __name__ == "__main__":
-    # 設置模型路徑和類別名稱
-    model_path = 'best_model_fold_10.pth'
-    class_names = ['Bacteria', 'Fungi', 'Healthy',
-                   'Nematode', 'Pest', 'Phytopthora', 'Virus']
-    threshold = 0.5  # 設置信心閾值
-
-    # 載入模型
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    model = load_model(model_path, len(class_names))
+
+    model = models.regnet_y_400mf(weights=RegNet_Y_400MF_Weights.DEFAULT)
+    num_ftrs = model.fc.in_features
+    model.fc = nn.Linear(num_ftrs, len(class_names))
     model = model.to(device)
 
-    # 測試集資料夾路徑
-    test_dir = 'Potato Leaf Disease Dataset/test'
-    result_dir = 'result'
-    os.makedirs(result_dir, exist_ok=True)
+    # 載入最佳權重
+    model.load_state_dict(torch.load('best_model_fold_10.pth'))
 
-    # 初始化計數器
-    tp_count = 0  # True Positive
-    fp_count = 0  # False Positive
-    fn_count = 0  # False Negative
-    total_inference_time = 0  # 累積推論時間
-    image_count = 0  # 計算影像數量
+    test_model(model, dataloader, dataset_size, device, class_names)
+import torch
+import os
+import time
+from torchvision import datasets, transforms, models
+from torch.utils.data import DataLoader
+import torch.nn as nn  
+from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
+from torchvision.models.regnet import RegNet_Y_400MF_Weights
 
-    # 遍歷測試集
-    for disease_dir in os.listdir(test_dir):
-        disease_path = os.path.join(test_dir, disease_dir)
+def test_model(model, dataloader, dataset_size, device, class_names):
+    model.eval()
+    running_corrects = 0
+    all_preds = []
+    all_labels = []
+    inference_times = []  # 用來存儲每張影像的推論時間
 
-        for img_name in os.listdir(disease_path):
-            img_path = os.path.join(disease_path, img_name)
+    img_counter = 0
+    for inputs, labels in dataloader:
+        inputs = inputs.to(device)
+        labels = labels.to(device)
 
-            try:
-                image = cv2.imread(img_path)
-                image_preprocessed = preprocess_image(image)
-                prediction, pred_idx, max_prob, inference_time = predict(
-                    model, image_preprocessed, device, class_names, threshold)
+        with torch.no_grad():
+            start_time = time.time()  # 開始計時
+            outputs = model(inputs)
+            _, preds = torch.max(outputs, 1)
+            end_time = time.time()  # 結束計時
 
-                # 累積推論時間
-                total_inference_time += inference_time
-                image_count += 1
+        running_corrects += torch.sum(preds == labels.data)
+        all_preds.extend(preds.cpu().numpy())
+        all_labels.extend(labels.cpu().numpy())
 
-                # 獲取真實類別索引
-                true_idx = class_names.index(disease_dir)
+        # 計算每張影像的推論時間
+        for i in range(inputs.size(0)):
+            inference_time = end_time - start_time
+            inference_times.append(inference_time)  # 記錄推論時間
+            print(f'Image: {dataloader.dataset.samples[img_counter][0]}')
+            print(f'Predicted: {class_names[preds[i]]}, Actual: {class_names[labels.data[i]]}, Inference Time: {inference_time:.4f} seconds')
+            img_counter += 1
 
-                # 判斷預測結果類別是否和真實類別相符
-                if pred_idx == true_idx:
-                    if max_prob >= threshold:
-                        tp_count += 1  # True Positive
-                    else:
-                        fn_count += 1  # False Negative
-                else:
-                    if max_prob >= threshold:
-                        fp_count += 1  # False Positive
+    test_acc = running_corrects.double() / dataset_size
+    precision = precision_score(all_labels, all_preds, average='weighted')
+    recall = recall_score(all_labels, all_preds, average='weighted')
+    f1 = f1_score(all_labels, all_preds, average='weighted')
+    cm = confusion_matrix(all_labels, all_preds)
 
-                # 打印每張圖片的預測結果並保存圖片（如果置信度大於等於閾值）
-                if max_prob >= threshold:
-                    # 創建真實類別的資料夾
-                    result_class_dir = os.path.join(result_dir, disease_dir)
-                    os.makedirs(result_class_dir, exist_ok=True)
+    print(f'Test Acc: {test_acc:.4f}')
+    print(f'Precision: {precision:.4f}')
+    print(f'Recall: {recall:.4f}')
+    print(f'F1 Score: {f1:.4f}')
+    print('Confusion Matrix:')
+    print(cm)
 
-                    # 在圖片上畫出預測結果和真實類別
-                    image_with_prediction = draw_prediction_on_image(
-                        image, disease_dir, prediction, max_prob)
+    # 計算平均推論速度
+    avg_inference_time = sum(inference_times) / len(inference_times)
+    print(f'Average Inference Time per Image: {avg_inference_time:.4f} seconds')
 
-                    # 保存圖片到真實類別的資料夾
-                    result_img_path = os.path.join(result_class_dir, img_name)
-                    cv2.imwrite(result_img_path, image_with_prediction)
+    for i, class_name in enumerate(class_names):
+        TP = cm[i, i]
+        FP = cm[:, i].sum() - TP
+        FN = cm[i, :].sum() - TP
+        TN = cm.sum() - (TP + FP + FN)
+        print(f'Class {class_name} - TP: {TP}, FP: {FP}, TN: {TN}, FN: {FN}')
 
-                    print(
-                        f"Image: {img_name}, True Label: {disease_dir}, Prediction: {prediction}, Inference Time: {inference_time:.4f} seconds")
+if __name__ == '__main__':
+    data_dir = 'Potato Leaf Disease Dataset'  # 修改為您的資料集路徑
+    batch_size = 1  # 批量大小
 
-            except Exception as e:
-                print(f"Error during prediction for {img_name}: {e}")
-                continue
+    data_transforms = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    ])
 
-    # 計算 Precision, Recall, 和 F1 Score
-    precision = tp_count / \
-        (tp_count + fp_count) if (tp_count + fp_count) > 0 else 0
-    recall = tp_count / \
-        (tp_count + fn_count) if (tp_count + fn_count) > 0 else 0
-    f1_score = 2 * (precision * recall) / (precision +
-                                           recall) if (precision + recall) > 0 else 0
+    test_dataset = datasets.ImageFolder(root=os.path.join(data_dir, 'test'), transform=data_transforms)
+    dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
 
-    # 計算平均推論時間
-    avg_inference_time = total_inference_time / \
-        image_count if image_count > 0 else 0
+    dataset_size = len(test_dataset)
+    class_names = test_dataset.classes
 
-    # 打印結果
-    print(f"True Positive (TP): {tp_count}")
-    print(f"False Positive (FP): {fp_count}")
-    print(f"False Negative (FN): {fn_count}")
-    print(f"Precision: {precision:.4f}")
-    print(f"Recall: {recall:.4f}")
-    print(f"F1 Score: {f1_score:.4f}")
-    print(f"Average Inference Time: {avg_inference_time:.4f} seconds")
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+    model = models.regnet_y_400mf(weights=RegNet_Y_400MF_Weights.DEFAULT)
+    num_ftrs = model.fc.in_features
+    model.fc = nn.Linear(num_ftrs, len(class_names))
+    model = model.to(device)
+
+    # 載入最佳權重
+    model.load_state_dict(torch.load('best_model_fold_10.pth'))
+
+    test_model(model, dataloader, dataset_size, device, class_names)

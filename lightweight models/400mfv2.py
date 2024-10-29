@@ -14,8 +14,6 @@ import numpy as np
 from torchvision.models.regnet import RegNet_Y_400MF_Weights
 
 # 訓練模型的函式
-
-
 def train_model(model, criterion, optimizer, scheduler, dataloader, dataset_size, device, num_epochs=50):
     since = time.time()  # 記錄訓練開始時間
     best_model_wts = copy.deepcopy(model.state_dict())  # 儲存最佳模型權重
@@ -95,8 +93,7 @@ def train_model(model, criterion, optimizer, scheduler, dataloader, dataset_size
 
     model.load_state_dict(best_model_wts)
     time_elapsed = time.time() - since
-    print(
-        f'Training complete in {time_elapsed // 60:.0f}m {time_elapsed % 60:.0f}s')
+    print(f'Training complete in {time_elapsed // 60:.0f}m {time_elapsed % 60:.0f}s')
     print(f'Best val Acc: {best_acc:.4f}')
 
     return model, best_acc, (train_losses, val_losses, train_accs, val_accs)
@@ -113,22 +110,18 @@ def k_fold_cross_validation(k, model, dataset, batch_size, device, num_epochs, c
         train_subset = Subset(dataset, train_idx)
         val_subset = Subset(dataset, val_idx)
 
-        train_loader = DataLoader(
-            train_subset, batch_size=batch_size, shuffle=True, num_workers=4)
-        val_loader = DataLoader(
-            val_subset, batch_size=batch_size, shuffle=False, num_workers=4)
+        train_loader = DataLoader(train_subset, batch_size=batch_size, shuffle=True, num_workers=4)
+        val_loader = DataLoader(val_subset, batch_size=batch_size, shuffle=False, num_workers=4)
 
         dataloaders = {'train': train_loader, 'val': val_loader}
         dataset_sizes = {'train': len(train_subset), 'val': len(val_subset)}
 
         model_copy = copy.deepcopy(model)
         criterion = nn.CrossEntropyLoss()
-        optimizer = optim.Adam(model_copy.parameters(), lr=0.0001)
-        scheduler = ReduceLROnPlateau(
-            optimizer, mode='min', factor=0.1, patience=150)  # 更新這裡
+        optimizer = optim.AdamW(model_copy.parameters(), lr=0.001)  # 設定學習率
+        scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=15)  # 設定學習率調整
 
-        model_copy, best_acc, fold_result = train_model(
-            model_copy, criterion, optimizer, scheduler, dataloaders, dataset_sizes, device, num_epochs)
+        model_copy, best_acc, fold_result = train_model(model_copy, criterion, optimizer, scheduler, dataloaders, dataset_sizes, device, num_epochs)
         accuracies.append(best_acc)
         fold_results.append(fold_result)
 
@@ -165,16 +158,11 @@ def k_fold_cross_validation(k, model, dataset, batch_size, device, num_epochs, c
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(
-        description='Training and testing script with 10-fold cross-validation')
-    parser.add_argument('--data_dir', type=str,
-                        default='Potato Leaf Disease Dataset', help='path to the dataset')
-    parser.add_argument('--num_epochs', type=int, default=150,
-                        help='number of epochs for training')
-    parser.add_argument('--batch_size', type=int, default=16,
-                        help='batch size for training')
-    parser.add_argument('--learning_rate', type=float,
-                        default=0.0001, help='learning rate for optimizer')
+    parser = argparse.ArgumentParser(description='Training and testing script with 10-fold cross-validation')
+    parser.add_argument('--data_dir', type=str, default='Potato Leaf Disease Dataset', help='path to the dataset')
+    parser.add_argument('--num_epochs', type=int, default=150, help='number of epochs for training')
+    parser.add_argument('--batch_size', type=int, default=16, help='batch size for training')
+    parser.add_argument('--learning_rate', type=float, default=0.001, help='learning rate for optimizer')
     args = parser.parse_args()
 
     data_dir = args.data_dir
@@ -202,8 +190,7 @@ if __name__ == '__main__':
     ])
 
     # 加載資料集
-    dataset = datasets.ImageFolder(root=os.path.join(
-        data_dir, 'train'), transform=data_transforms)
+    dataset = datasets.ImageFolder(root=os.path.join(data_dir, 'train'), transform=data_transforms)
     class_names = dataset.classes
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -211,9 +198,13 @@ if __name__ == '__main__':
     # 建立模型並加載預訓練權重
     model = models.regnet_y_400mf(weights=None)
     num_ftrs = model.fc.in_features
-    model.fc = nn.Linear(num_ftrs, len(class_names))  # 調整最後的全連接層以符合分類數
+    model.fc = nn.Sequential(  # 調整最後的全連接層以符合分類數
+        nn.Linear(num_ftrs, 512),
+        nn.ReLU(),
+        nn.Dropout(0.5),  # 添加Dropout層
+        nn.Linear(512, len(class_names))
+    )
     model = model.to(device)
 
-    k = 10  # 設置為5折交叉驗證
-    accuracies, mean_acc, std_acc = k_fold_cross_validation(
-        k, model, dataset, batch_size, device, num_epochs, class_names)
+    k = 10  # 設置為10折交叉驗證
+    accuracies, mean_acc, std_acc = k_fold_cross_validation(k, model, dataset, batch_size, device, num_epochs, class_names)
