@@ -12,6 +12,8 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 import argparse
 import numpy as np
 from torchvision.models.regnet import RegNet_Y_400MF_Weights
+from torchvision import transforms
+
 
 # 訓練模型的函式
 
@@ -123,9 +125,9 @@ def k_fold_cross_validation(k, model, dataset, batch_size, device, num_epochs, c
 
         model_copy = copy.deepcopy(model)
         criterion = nn.CrossEntropyLoss()
-        optimizer = optim.Adam(model_copy.parameters(), lr=0.001)
+        optimizer = optim.AdamW(model_copy.parameters(), lr=0.001)
         scheduler = ReduceLROnPlateau(
-            optimizer, mode='min', factor=0.1, patience=150)  # 更新這裡
+            optimizer, mode='min', factor=0.7, patience=15)  # 更新這裡
 
         model_copy, best_acc, fold_result = train_model(
             model_copy, criterion, optimizer, scheduler, dataloaders, dataset_sizes, device, num_epochs)
@@ -184,15 +186,16 @@ if __name__ == '__main__':
 
     # 資料增強的轉換操作
     data_transforms = transforms.Compose([
-        transforms.RandomResizedCrop(224, scale=(0.8, 1.0)),
-        transforms.ColorJitter(brightness=0.2),
-        transforms.RandomHorizontalFlip(),
-        transforms.RandomVerticalFlip(),
-        transforms.RandomRotation(20),
-        transforms.RandomAffine(degrees=0, translate=(0.1, 0.1)),
+        transforms.RandomResizedCrop(224, scale=(0.8, 1.0)),                # 隨機裁切範圍，保持較大比例
+        transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.05),     # 顏色變化
+        transforms.RandomHorizontalFlip(p=0.5),                              # 隨機水平翻轉
+        transforms.RandomVerticalFlip(p=0.2),                                # 隨機垂直翻轉
+        transforms.RandomRotation(degrees=15),                               # 輕微旋轉
+        transforms.RandomAffine(degrees=0, translate=(0.1, 0.1), shear=5),   # 平移與剪切
         transforms.ToTensor(),
-        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])   # 標準化
     ])
+
 
     # 驗證集的轉換操作
     val_transforms = transforms.Compose([
