@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 import torch
 from torch import nn, Tensor
 
-from ..ops.misc import Conv2dNormActivation, SqueezeExcitation
+from ..ops.misc import GhostConv2dNormActivation
 from ..transforms._presets import ImageClassification, InterpolationMode
 from ..utils import _log_api_usage_once
 from ._api import register_model, Weights, WeightsEnum
@@ -50,7 +50,7 @@ __all__ = [
 ]
 
 
-class SimpleStemIN(Conv2dNormActivation):
+class SimpleStemIN(GhostConv2dNormActivation):
     """Simple stem for ImageNet: 3x3, BN, ReLU."""
 
     def __init__(
@@ -83,18 +83,17 @@ class BottleneckTransform(nn.Sequential):
         w_b = int(round(width_out * bottleneck_multiplier))
         g = w_b // group_width
 
-        layers["a"] = Conv2dNormActivation(
+        layers["a"] = GhostConv2dNormActivation(
             width_in, w_b, kernel_size=1, stride=1, norm_layer=norm_layer, activation_layer=activation_layer
         )
-        layers["b"] = Conv2dNormActivation(
+        layers["b"] = GhostConv2dNormActivation(
             w_b, w_b, kernel_size=3, stride=stride, groups=g, norm_layer=norm_layer, activation_layer=activation_layer
         )
 
         if se_ratio:
-            width_se_out = int(round(se_ratio * width_in))
             layers["se"] = SimAM(channels=w_b)  # 提供通道數
 
-        layers["c"] = Conv2dNormActivation(
+        layers["c"] = GhostConv2dNormActivation(
             w_b, width_out, kernel_size=1, stride=1, norm_layer=norm_layer, activation_layer=None
         )
         super().__init__(layers)
@@ -120,7 +119,7 @@ class ResBottleneckBlock(nn.Module):
         self.proj = None
         should_proj = (width_in != width_out) or (stride != 1)
         if should_proj:
-            self.proj = Conv2dNormActivation(
+            self.proj = GhostConv2dNormActivation(
                 width_in, width_out, kernel_size=1, stride=stride, norm_layer=norm_layer, activation_layer=None
             )
         self.f = BottleneckTransform(
