@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 import torch
 from torch import nn, Tensor
 
-from ..ops.misc import GhostConv2dNormActivation
+from ..ops.misc import GhostConv2dNormActivation, Conv2dNormActivation
 from ..transforms._presets import ImageClassification, InterpolationMode
 from ..utils import _log_api_usage_once
 from ._api import register_model, Weights, WeightsEnum
@@ -86,14 +86,14 @@ class BottleneckTransform(nn.Sequential):
         layers["a"] = GhostConv2dNormActivation(
             width_in, w_b, kernel_size=1, stride=1, norm_layer=norm_layer, activation_layer=activation_layer
         )
-        layers["b"] = GhostConv2dNormActivation(
+        layers["b"] = Conv2dNormActivation(
             w_b, w_b, kernel_size=3, stride=stride, groups=g, norm_layer=norm_layer, activation_layer=activation_layer
         )
 
         if se_ratio:
             layers["se"] = SimAM(channels=w_b)  # 提供通道數
 
-        layers["c"] = GhostConv2dNormActivation(
+        layers["c"] = Conv2dNormActivation(
             w_b, width_out, kernel_size=1, stride=1, norm_layer=norm_layer, activation_layer=None
         )
         super().__init__(layers)
@@ -119,7 +119,7 @@ class ResBottleneckBlock(nn.Module):
         self.proj = None
         should_proj = (width_in != width_out) or (stride != 1)
         if should_proj:
-            self.proj = GhostConv2dNormActivation(
+            self.proj = Conv2dNormActivation(
                 width_in, width_out, kernel_size=1, stride=stride, norm_layer=norm_layer, activation_layer=None
             )
         self.f = BottleneckTransform(
@@ -232,8 +232,10 @@ class BlockParams:
             raise ValueError("Invalid RegNet settings")
         # Compute the block widths. Each stage has one unique block width
         widths_cont = torch.arange(depth) * w_a + w_0
-        block_capacity = torch.round(torch.log(widths_cont / w_0) / math.log(w_m))
-        block_widths = (torch.round(torch.divide(w_0 * torch.pow(w_m, block_capacity), QUANT)) * QUANT).int().tolist()
+        block_capacity = torch.round(
+            torch.log(widths_cont / w_0) / math.log(w_m))
+        block_widths = (torch.round(torch.divide(
+            w_0 * torch.pow(w_m, block_capacity), QUANT)) * QUANT).int().tolist()
         num_stages = len(set(block_widths))
 
         # Convert to per stage parameters
@@ -246,7 +248,8 @@ class BlockParams:
         splits = [w != wp or r != rp for w, wp, r, rp in split_helper]
 
         stage_widths = [w for w, t in zip(block_widths, splits[:-1]) if t]
-        stage_depths = torch.diff(torch.tensor([d for d, t in enumerate(splits) if t])).int().tolist()
+        stage_depths = torch.diff(torch.tensor(
+            [d for d, t in enumerate(splits) if t])).int().tolist()
 
         strides = [STRIDE] * num_stages
         bottleneck_multipliers = [bottleneck_multiplier] * num_stages
@@ -279,11 +282,14 @@ class BlockParams:
         """
         # Compute all widths for the current settings
         widths = [int(w * b) for w, b in zip(stage_widths, bottleneck_ratios)]
-        group_widths_min = [min(g, w_bot) for g, w_bot in zip(group_widths, widths)]
+        group_widths_min = [min(g, w_bot)
+                            for g, w_bot in zip(group_widths, widths)]
 
         # Compute the adjusted widths so that stage and group widths fit
-        ws_bot = [_make_divisible(w_bot, g) for w_bot, g in zip(widths, group_widths_min)]
-        stage_widths = [int(w_bot / b) for w_bot, b in zip(ws_bot, bottleneck_ratios)]
+        ws_bot = [_make_divisible(w_bot, g)
+                  for w_bot, g in zip(widths, group_widths_min)]
+        stage_widths = [int(w_bot / b)
+                        for w_bot, b in zip(ws_bot, bottleneck_ratios)]
         return stage_widths, group_widths_min
 
 
@@ -352,14 +358,16 @@ class RegNet(nn.Module):
         self.trunk_output = nn.Sequential(OrderedDict(blocks))
 
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
-        self.fc = nn.Linear(in_features=current_width, out_features=num_classes)
+        self.fc = nn.Linear(in_features=current_width,
+                            out_features=num_classes)
 
         # Performs ResNet-style weight initialization
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 # Note that there is no bias due to BN
                 fan_out = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                nn.init.normal_(m.weight, mean=0.0, std=math.sqrt(2.0 / fan_out))
+                nn.init.normal_(m.weight, mean=0.0,
+                                std=math.sqrt(2.0 / fan_out))
             elif isinstance(m, nn.BatchNorm2d):
                 nn.init.ones_(m.weight)
                 nn.init.zeros_(m.bias)
@@ -385,13 +393,16 @@ def _regnet(
     **kwargs: Any,
 ) -> RegNet:
     if weights is not None:
-        _ovewrite_named_param(kwargs, "num_classes", len(weights.meta["categories"]))
+        _ovewrite_named_param(kwargs, "num_classes",
+                              len(weights.meta["categories"]))
 
-    norm_layer = kwargs.pop("norm_layer", partial(nn.BatchNorm2d, eps=1e-05, momentum=0.1))
+    norm_layer = kwargs.pop("norm_layer", partial(
+        nn.BatchNorm2d, eps=1e-05, momentum=0.1))
     model = RegNet(block_params, norm_layer=norm_layer, **kwargs)
 
     if weights is not None:
-        model.load_state_dict(weights.get_state_dict(progress=progress, check_hash=True))
+        model.load_state_dict(weights.get_state_dict(
+            progress=progress, check_hash=True))
 
     return model
 
@@ -429,7 +440,8 @@ class RegNet_Y_400MF_Weights(WeightsEnum):
     )
     IMAGENET1K_V2 = Weights(
         url="https://download.pytorch.org/models/regnet_y_400mf-e6988f5f.pth",
-        transforms=partial(ImageClassification, crop_size=224, resize_size=232),
+        transforms=partial(ImageClassification,
+                           crop_size=224, resize_size=232),
         meta={
             **_COMMON_META,
             "num_params": 4344144,
@@ -473,7 +485,8 @@ class RegNet_Y_800MF_Weights(WeightsEnum):
     )
     IMAGENET1K_V2 = Weights(
         url="https://download.pytorch.org/models/regnet_y_800mf-58fc7688.pth",
-        transforms=partial(ImageClassification, crop_size=224, resize_size=232),
+        transforms=partial(ImageClassification,
+                           crop_size=224, resize_size=232),
         meta={
             **_COMMON_META,
             "num_params": 6432512,
@@ -517,7 +530,8 @@ class RegNet_Y_1_6GF_Weights(WeightsEnum):
     )
     IMAGENET1K_V2 = Weights(
         url="https://download.pytorch.org/models/regnet_y_1_6gf-0d7bc02a.pth",
-        transforms=partial(ImageClassification, crop_size=224, resize_size=232),
+        transforms=partial(ImageClassification,
+                           crop_size=224, resize_size=232),
         meta={
             **_COMMON_META,
             "num_params": 11202430,
@@ -561,7 +575,8 @@ class RegNet_Y_3_2GF_Weights(WeightsEnum):
     )
     IMAGENET1K_V2 = Weights(
         url="https://download.pytorch.org/models/regnet_y_3_2gf-9180c971.pth",
-        transforms=partial(ImageClassification, crop_size=224, resize_size=232),
+        transforms=partial(ImageClassification,
+                           crop_size=224, resize_size=232),
         meta={
             **_COMMON_META,
             "num_params": 19436338,
@@ -605,7 +620,8 @@ class RegNet_Y_8GF_Weights(WeightsEnum):
     )
     IMAGENET1K_V2 = Weights(
         url="https://download.pytorch.org/models/regnet_y_8gf-dc2b1b54.pth",
-        transforms=partial(ImageClassification, crop_size=224, resize_size=232),
+        transforms=partial(ImageClassification,
+                           crop_size=224, resize_size=232),
         meta={
             **_COMMON_META,
             "num_params": 39381472,
@@ -649,7 +665,8 @@ class RegNet_Y_16GF_Weights(WeightsEnum):
     )
     IMAGENET1K_V2 = Weights(
         url="https://download.pytorch.org/models/regnet_y_16gf-3e4a00f9.pth",
-        transforms=partial(ImageClassification, crop_size=224, resize_size=232),
+        transforms=partial(ImageClassification,
+                           crop_size=224, resize_size=232),
         meta={
             **_COMMON_META,
             "num_params": 83590140,
@@ -738,7 +755,8 @@ class RegNet_Y_32GF_Weights(WeightsEnum):
     )
     IMAGENET1K_V2 = Weights(
         url="https://download.pytorch.org/models/regnet_y_32gf-8db6d4b5.pth",
-        transforms=partial(ImageClassification, crop_size=224, resize_size=232),
+        transforms=partial(ImageClassification,
+                           crop_size=224, resize_size=232),
         meta={
             **_COMMON_META,
             "num_params": 145046770,
@@ -876,7 +894,8 @@ class RegNet_X_400MF_Weights(WeightsEnum):
     )
     IMAGENET1K_V2 = Weights(
         url="https://download.pytorch.org/models/regnet_x_400mf-62229a5f.pth",
-        transforms=partial(ImageClassification, crop_size=224, resize_size=232),
+        transforms=partial(ImageClassification,
+                           crop_size=224, resize_size=232),
         meta={
             **_COMMON_META,
             "num_params": 5495976,
@@ -920,7 +939,8 @@ class RegNet_X_800MF_Weights(WeightsEnum):
     )
     IMAGENET1K_V2 = Weights(
         url="https://download.pytorch.org/models/regnet_x_800mf-94a99ebd.pth",
-        transforms=partial(ImageClassification, crop_size=224, resize_size=232),
+        transforms=partial(ImageClassification,
+                           crop_size=224, resize_size=232),
         meta={
             **_COMMON_META,
             "num_params": 7259656,
@@ -964,7 +984,8 @@ class RegNet_X_1_6GF_Weights(WeightsEnum):
     )
     IMAGENET1K_V2 = Weights(
         url="https://download.pytorch.org/models/regnet_x_1_6gf-a12f2b72.pth",
-        transforms=partial(ImageClassification, crop_size=224, resize_size=232),
+        transforms=partial(ImageClassification,
+                           crop_size=224, resize_size=232),
         meta={
             **_COMMON_META,
             "num_params": 9190136,
@@ -1008,7 +1029,8 @@ class RegNet_X_3_2GF_Weights(WeightsEnum):
     )
     IMAGENET1K_V2 = Weights(
         url="https://download.pytorch.org/models/regnet_x_3_2gf-7071aa85.pth",
-        transforms=partial(ImageClassification, crop_size=224, resize_size=232),
+        transforms=partial(ImageClassification,
+                           crop_size=224, resize_size=232),
         meta={
             **_COMMON_META,
             "num_params": 15296552,
@@ -1052,7 +1074,8 @@ class RegNet_X_8GF_Weights(WeightsEnum):
     )
     IMAGENET1K_V2 = Weights(
         url="https://download.pytorch.org/models/regnet_x_8gf-2b70d774.pth",
-        transforms=partial(ImageClassification, crop_size=224, resize_size=232),
+        transforms=partial(ImageClassification,
+                           crop_size=224, resize_size=232),
         meta={
             **_COMMON_META,
             "num_params": 39572648,
@@ -1096,7 +1119,8 @@ class RegNet_X_16GF_Weights(WeightsEnum):
     )
     IMAGENET1K_V2 = Weights(
         url="https://download.pytorch.org/models/regnet_x_16gf-ba3796d7.pth",
-        transforms=partial(ImageClassification, crop_size=224, resize_size=232),
+        transforms=partial(ImageClassification,
+                           crop_size=224, resize_size=232),
         meta={
             **_COMMON_META,
             "num_params": 54278536,
@@ -1140,7 +1164,8 @@ class RegNet_X_32GF_Weights(WeightsEnum):
     )
     IMAGENET1K_V2 = Weights(
         url="https://download.pytorch.org/models/regnet_x_32gf-6eb8fdc6.pth",
-        transforms=partial(ImageClassification, crop_size=224, resize_size=232),
+        transforms=partial(ImageClassification,
+                           crop_size=224, resize_size=232),
         meta={
             **_COMMON_META,
             "num_params": 107811560,
@@ -1185,7 +1210,8 @@ def regnet_y_400mf(*, weights: Optional[RegNet_Y_400MF_Weights] = None, progress
     """
     weights = RegNet_Y_400MF_Weights.verify(weights)
 
-    params = BlockParams.from_init_params(depth=16, w_0=48, w_a=27.89, w_m=2.09, group_width=8, se_ratio=0.25, **kwargs)
+    params = BlockParams.from_init_params(
+        depth=16, w_0=48, w_a=27.89, w_m=2.09, group_width=8, se_ratio=0.25, **kwargs)
     return _regnet(params, weights, progress, **kwargs)
 
 
@@ -1211,7 +1237,8 @@ def regnet_y_800mf(*, weights: Optional[RegNet_Y_800MF_Weights] = None, progress
     """
     weights = RegNet_Y_800MF_Weights.verify(weights)
 
-    params = BlockParams.from_init_params(depth=14, w_0=56, w_a=38.84, w_m=2.4, group_width=16, se_ratio=0.25, **kwargs)
+    params = BlockParams.from_init_params(
+        depth=14, w_0=56, w_a=38.84, w_m=2.4, group_width=16, se_ratio=0.25, **kwargs)
     return _regnet(params, weights, progress, **kwargs)
 
 
@@ -1405,7 +1432,8 @@ def regnet_x_400mf(*, weights: Optional[RegNet_X_400MF_Weights] = None, progress
     """
     weights = RegNet_X_400MF_Weights.verify(weights)
 
-    params = BlockParams.from_init_params(depth=22, w_0=24, w_a=24.48, w_m=2.54, group_width=16, **kwargs)
+    params = BlockParams.from_init_params(
+        depth=22, w_0=24, w_a=24.48, w_m=2.54, group_width=16, **kwargs)
     return _regnet(params, weights, progress, **kwargs)
 
 
@@ -1431,7 +1459,8 @@ def regnet_x_800mf(*, weights: Optional[RegNet_X_800MF_Weights] = None, progress
     """
     weights = RegNet_X_800MF_Weights.verify(weights)
 
-    params = BlockParams.from_init_params(depth=16, w_0=56, w_a=35.73, w_m=2.28, group_width=16, **kwargs)
+    params = BlockParams.from_init_params(
+        depth=16, w_0=56, w_a=35.73, w_m=2.28, group_width=16, **kwargs)
     return _regnet(params, weights, progress, **kwargs)
 
 
@@ -1457,7 +1486,8 @@ def regnet_x_1_6gf(*, weights: Optional[RegNet_X_1_6GF_Weights] = None, progress
     """
     weights = RegNet_X_1_6GF_Weights.verify(weights)
 
-    params = BlockParams.from_init_params(depth=18, w_0=80, w_a=34.01, w_m=2.25, group_width=24, **kwargs)
+    params = BlockParams.from_init_params(
+        depth=18, w_0=80, w_a=34.01, w_m=2.25, group_width=24, **kwargs)
     return _regnet(params, weights, progress, **kwargs)
 
 
@@ -1483,7 +1513,8 @@ def regnet_x_3_2gf(*, weights: Optional[RegNet_X_3_2GF_Weights] = None, progress
     """
     weights = RegNet_X_3_2GF_Weights.verify(weights)
 
-    params = BlockParams.from_init_params(depth=25, w_0=88, w_a=26.31, w_m=2.25, group_width=48, **kwargs)
+    params = BlockParams.from_init_params(
+        depth=25, w_0=88, w_a=26.31, w_m=2.25, group_width=48, **kwargs)
     return _regnet(params, weights, progress, **kwargs)
 
 
@@ -1509,7 +1540,8 @@ def regnet_x_8gf(*, weights: Optional[RegNet_X_8GF_Weights] = None, progress: bo
     """
     weights = RegNet_X_8GF_Weights.verify(weights)
 
-    params = BlockParams.from_init_params(depth=23, w_0=80, w_a=49.56, w_m=2.88, group_width=120, **kwargs)
+    params = BlockParams.from_init_params(
+        depth=23, w_0=80, w_a=49.56, w_m=2.88, group_width=120, **kwargs)
     return _regnet(params, weights, progress, **kwargs)
 
 
@@ -1535,7 +1567,8 @@ def regnet_x_16gf(*, weights: Optional[RegNet_X_16GF_Weights] = None, progress: 
     """
     weights = RegNet_X_16GF_Weights.verify(weights)
 
-    params = BlockParams.from_init_params(depth=22, w_0=216, w_a=55.59, w_m=2.1, group_width=128, **kwargs)
+    params = BlockParams.from_init_params(
+        depth=22, w_0=216, w_a=55.59, w_m=2.1, group_width=128, **kwargs)
     return _regnet(params, weights, progress, **kwargs)
 
 
@@ -1561,5 +1594,6 @@ def regnet_x_32gf(*, weights: Optional[RegNet_X_32GF_Weights] = None, progress: 
     """
     weights = RegNet_X_32GF_Weights.verify(weights)
 
-    params = BlockParams.from_init_params(depth=23, w_0=320, w_a=69.86, w_m=2.0, group_width=168, **kwargs)
+    params = BlockParams.from_init_params(
+        depth=23, w_0=320, w_a=69.86, w_m=2.0, group_width=168, **kwargs)
     return _regnet(params, weights, progress, **kwargs)
