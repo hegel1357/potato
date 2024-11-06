@@ -125,7 +125,8 @@ def k_fold_cross_validation(k, model, dataset, batch_size, device, num_epochs, c
 
         model_copy = copy.deepcopy(model)
         criterion = nn.CrossEntropyLoss()
-        optimizer = optim.AdamW(model_copy.parameters(), lr=0.001)
+        optimizer = optim.AdamW(model_copy.parameters(),
+                                lr=0.001, weight_decay=0.01)
         scheduler = ReduceLROnPlateau(
             optimizer, mode='min', factor=0.5, patience=20)  # 更新這裡
 
@@ -186,16 +187,22 @@ if __name__ == '__main__':
 
     # 資料增強的轉換操作
     data_transforms = transforms.Compose([
-        transforms.RandomResizedCrop(224, scale=(0.8, 1.0)),                # 隨機裁切範圍，保持較大比例
-        transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.05),     # 顏色變化
-        transforms.RandomHorizontalFlip(p=0.5),                              # 隨機水平翻轉
-        transforms.RandomVerticalFlip(p=0.2),                                # 隨機垂直翻轉
-        transforms.RandomRotation(degrees=15),                               # 輕微旋轉
-        transforms.RandomAffine(degrees=0, translate=(0.1, 0.1), shear=5),   # 平移與剪切
+        transforms.RandomResizedCrop(224, scale=(
+            0.8, 1.0)),                # 隨機裁切範圍，保持較大比例
+        transforms.ColorJitter(brightness=0.2, contrast=0.2,
+                               saturation=0.2, hue=0.05),     # 顏色變化
+        transforms.RandomHorizontalFlip(
+            p=0.5),                              # 隨機水平翻轉
+        transforms.RandomVerticalFlip(
+            p=0.2),                                # 隨機垂直翻轉
+        transforms.RandomRotation(
+            degrees=15),                               # 輕微旋轉
+        transforms.RandomAffine(
+            degrees=0, translate=(0.1, 0.1), shear=5),   # 平移與剪切
         transforms.ToTensor(),
-        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])   # 標準化
+        transforms.Normalize([0.485, 0.456, 0.406], [
+                             0.229, 0.224, 0.225])   # 標準化
     ])
-
 
     # 驗證集的轉換操作
     val_transforms = transforms.Compose([

@@ -125,9 +125,10 @@ def k_fold_cross_validation(k, model, dataset, batch_size, device, num_epochs, c
 
         model_copy = copy.deepcopy(model)
         criterion = nn.CrossEntropyLoss()
-        optimizer = optim.Adam(model_copy.parameters(), lr=0.001)
+        optimizer = optim.AdamW(model_copy.parameters(),
+                                lr=0.001, weight_decay=0.01)
         scheduler = ReduceLROnPlateau(
-            optimizer, mode='min', factor=0.5, patience=15)  # 更新這裡
+            optimizer, mode='min', factor=0.5, patience=20)  # 更新這裡
 
         model_copy, best_acc, fold_result = train_model(
             model_copy, criterion, optimizer, scheduler, dataloaders, dataset_sizes, device, num_epochs)
@@ -170,7 +171,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Training and testing script with 10-fold cross-validation')
     parser.add_argument('--data_dir', type=str,
-                        default='Potato Leaf Disease Dataset', help='path to the dataset')
+                        default='PlantVillage dataset', help='path to the dataset')
     parser.add_argument('--num_epochs', type=int, default=150,
                         help='number of epochs for training')
     parser.add_argument('--batch_size', type=int, default=16,
