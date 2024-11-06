@@ -50,7 +50,7 @@ __all__ = [
 ]
 
 
-class SimpleStemIN(GhostConv2dNormActivation):
+class SimpleStemIN(Conv2dNormActivation):
     """Simple stem for ImageNet: 3x3, BN, ReLU."""
 
     def __init__(
@@ -83,7 +83,7 @@ class BottleneckTransform(nn.Sequential):
         w_b = int(round(width_out * bottleneck_multiplier))
         g = w_b // group_width
 
-        layers["a"] = GhostConv2dNormActivation(
+        layers["a"] = Conv2dNormActivation(
             width_in, w_b, kernel_size=1, stride=1, norm_layer=norm_layer, activation_layer=activation_layer
         )
         layers["b"] = Conv2dNormActivation(
@@ -93,7 +93,7 @@ class BottleneckTransform(nn.Sequential):
         if se_ratio:
             layers["se"] = SimAM(channels=w_b)  # 提供通道數
 
-        layers["c"] = Conv2dNormActivation(
+        layers["c"] = GhostConv2dNormActivation(
             w_b, width_out, kernel_size=1, stride=1, norm_layer=norm_layer, activation_layer=None
         )
         super().__init__(layers)
