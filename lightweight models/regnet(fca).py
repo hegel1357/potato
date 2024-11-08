@@ -6,7 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 import torch
 from torch import nn, Tensor
 
-from ..ops.misc import Conv2dNormActivation, SqueezeExcitation
+from ..ops.misc import GhostConv2dNormActivation, Conv2dNormActivation
 from ..transforms._presets import ImageClassification, InterpolationMode
 from ..utils import _log_api_usage_once
 from ._api import register_model, Weights, WeightsEnum
@@ -98,7 +98,7 @@ class BottleneckTransform(nn.Sequential):
                 in_planes=w_b, reduction_ratio=int(1/se_ratio)
             )
 
-        layers["c"] = Conv2dNormActivation(
+        layers["c"] = GhostConv2dNormActivation(
             w_b, width_out, kernel_size=1, stride=1, norm_layer=norm_layer, activation_layer=None
         )
         super().__init__(layers)
